@@ -1,4 +1,4 @@
-const registerRouter = require('./backend/router')
+const registerRouter = require("./backend/router");
 
 module.exports = {
   css: {
@@ -19,17 +19,18 @@ module.exports = {
   },
   devServer: {
     before(app) {
-      registerRouter(app)
+      registerRouter(app);
     }
   },
-  configureWebpack: (config) => {
+  configureWebpack: config => {
     if (process.env.npm_config_report) {
-      const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-      config.plugins.push(new BundleAnalyzerPlugin())
+      const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+        .BundleAnalyzerPlugin;
+      config.plugins.push(new BundleAnalyzerPlugin());
     }
   },
   // 当我们在生产环境下不希望开启，因为容易被人看我们的源码
   productionSourceMap: false,
   // 路径的部署目标在子路径下，就得对应设置publicPath，在vue cli文档里有解释
-  publicPath: process.env.NODE_ENV === 'production' ? '/music-next/' : '/'
-}
+  publicPath: process.env.NODE_ENV === "production" ? "/" : "/"
+};
